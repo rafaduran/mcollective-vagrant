@@ -10,6 +10,7 @@ securityprovider = ssl
 plugin.ssl_server_public = /etc/mcollective/ssl/server-public.pem
 plugin.ssl_client_private = /root/.mc/<%= @hostname %>-private.pem
 plugin.ssl_client_public = /root/.mc/<%= @hostname %>-public.pem
+plugin.ssl_serializer = yaml
 
 direct_addressing = yes
 direct_addressing_threshold = 5
