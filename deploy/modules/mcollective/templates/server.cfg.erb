@@ -6,20 +6,25 @@ loglevel = info
 daemonize = 1
 identity = <%= @fqdn %>
 
-securityprovider = none
+securityprovider = ssl
+plugin.ssl_server_private = /etc/mcollective/ssl/server-private.pem
+plugin.ssl_server_public = /etc/mcollective/ssl/server-public.pem
+plugin.ssl_client_cert_dir = /etc/mcollective/ssl/clients/
 
 direct_addressing = yes
 direct_addressing_threshold = 5
 
-connector = redis
-plugin.redis.host = 192.168.2.10
+connector = activemq
+plugin.activemq.pool.size = 1
+plugin.activemq.pool.1.host = 192.168.2.10
+plugin.activemq.pool.1.port = 6163
+plugin.activemq.pool.1.user = mcollective
+plugin.activemq.pool.1.password = marionette
 
 factsource = yaml
 plugin.yaml = /etc/mcollective/facts.yaml
 classesfile = /etc/mcollective/classes.txt
 
-registration = redis
-registerinterval = 10
 
 rpcaudit = 1
 rpcauditprovider = logfile

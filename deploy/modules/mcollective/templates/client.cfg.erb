@@ -6,19 +6,21 @@ logger_type = console
 daemonize = 1
 identity = <%= @fqdn %>
 
-securityprovider = none
+securityprovider = ssl
+plugin.ssl_server_public = /etc/mcollective/ssl/server-public.pem
+plugin.ssl_client_private = /root/.mc/<%= @hostname %>-private.pem
+plugin.ssl_client_public = /root/.mc/<%= @hostname %>-public.pem
 
 direct_addressing = yes
 direct_addressing_threshold = 5
 
-connector = redis
-plugin.redis.host = 192.168.2.10
+connector = activemq
+plugin.activemq.pool.size = 1
+plugin.activemq.pool.1.host = 192.168.2.10
+plugin.activemq.pool.1.port = 6163
+plugin.activemq.pool.1.user = mcollective
+plugin.activemq.pool.1.password = marionette
 
 factsource = yaml
 plugin.yaml = /etc/mcollective/facts.yaml
 classesfile = /etc/mcollective/classes.txt
-
-registration = redis
-registerinterval = 10
-
-default_discovery_method = redis

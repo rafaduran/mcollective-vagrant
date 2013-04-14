@@ -1,22 +1,24 @@
 class roles::middleware {
-  service{"iptables": ensure => stopped}
+  service{'iptables': ensure => stopped}
 
-  class{"repos": } ->
+  class{'repos': } ->
 
-  class{"redis":
-    conf_port => '6379',
-    conf_bind => '0.0.0.0'
+  class{'java':
+    distribution => 'jdk',
+    version      => 'latest',
   } ->
 
-  class{"puppet": } ->
-  class{"nagios": } ->
-  class{"puppet::master": } ->
-  class{"mcollective": } ->
-  class{"motd": } ->
+  class{'activemq': }
+
+  class{'puppet': } ->
+  class{'nagios': } ->
+  class{'puppet::master': } ->
+  class{'mcollective': } ->
+  class{'motd': } ->
   Class[$name]
 
-  exec{"/usr/bin/curl http://srt.ly/mcvagrantcounter":
+  exec{'/usr/bin/curl http://srt.ly/mcvagrantcounter':
     refreshonly => true,
-    subscribe => Class["motd"]
+    subscribe => Class['motd']
   }
 }
