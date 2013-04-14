@@ -1,3 +1,6 @@
 [submodule "deploy/modules/activemq"]
 	path = deploy/modules/activemq
 	url = https://github.com/puppetlabs/puppetlabs-activemq
+[submodule "deploy/modules/java"]
+	path = deploy/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
